@@ -38,17 +38,25 @@ const Gallery = React.memo((props: ConnectionProps) => {
   const address = props.connectedAccounts.ethereum;
   const [selecteNft, setNFT] = React.useState<NFT>(null);
   const { isLoading, data } = useGetNFTs(address);
-  console.log({ data });
 
   const onNFTClick = React.useCallback((nft) => {
     setNFT(nft);
   }, []);
 
+  const nfts = data?.collectibles;
+
+  const totalWorth = React.useMemo(
+    () =>
+      nfts.reduce((acc, nft) => {
+        return acc + (nft.collection.floorPrice?.price ?? 0);
+      }, 0),
+    [nfts]
+  );
+
   if (isLoading) {
     return <LoadingComponent />;
   }
 
-  const nfts = data?.collectibles;
   if (!nfts?.length) {
     return <Body>No NFTs yet!</Body>;
   }
@@ -63,10 +71,7 @@ const Gallery = React.memo((props: ConnectionProps) => {
       />
     );
   }
-  const totalWorth = nfts.reduce((acc, nft) => {
-    return acc + (nft.collection.floorPrice?.price ?? 0);
-  }, 0);
-  console.log({ totalWorth });
+
   return (
     <Body>
       Gallery
