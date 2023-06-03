@@ -45,13 +45,14 @@ const Gallery = React.memo((props: ConnectionProps) => {
 
   const nfts = data?.collectibles;
 
-  const totalWorth = React.useMemo(
-    () =>
-      nfts.reduce((acc, nft) => {
+  const totalWorth = React.useMemo(() => {
+    if (nfts?.length) {
+      return nfts.reduce((acc, nft) => {
         return acc + (nft.collection.floorPrice?.price ?? 0);
-      }, 0),
-    [nfts]
-  );
+      }, 0);
+    }
+    return 0;
+  }, [nfts]);
 
   if (isLoading) {
     return <LoadingComponent />;
@@ -78,7 +79,7 @@ const Gallery = React.memo((props: ConnectionProps) => {
       <Worth>Total Estimated Worth: {utils.formatEther(BigInt(totalWorth))} ETH</Worth>
       <GalleryView>
         {data.collectibles?.map((nft) => (
-          <NFTCard nft={nft} onClick={() => onNFTClick(nft)} />
+          <NFTCard key={nft.id} nft={nft} onClick={() => onNFTClick(nft)} />
         ))}
       </GalleryView>
     </Body>

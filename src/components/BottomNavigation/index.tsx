@@ -4,6 +4,7 @@ import IconHome from '../../icons/IconHome';
 import IconGrid from '../../icons/IconGrid';
 import { Routes } from '../ConnectedRoutes';
 import React from 'react';
+import IconSwap from '../../icons/IconSwap';
 
 const NavWrapper = styled.div`
   background-color: ${DARK_GRAY};
@@ -43,6 +44,9 @@ const BottomNavigation = React.memo(({ navigate, active }: Props) => {
       </NavItem>
       <NavItem active={active === Routes.NFTs} onClick={() => navigate(Routes.NFTs)}>
         <IconGrid height="24px" width="24px" />
+      </NavItem>
+      <NavItem active={active === Routes.Trading} onClick={() => navigate(Routes.Trading)}>
+        <IconSwap height="24px" width="24px" />
       </NavItem>
     </NavWrapper>
   );
