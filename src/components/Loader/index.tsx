@@ -3,9 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import { PURPLE } from '../../constants';
 
 const spinAnimation = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
   to {
     transform: rotate(360deg);
   }
@@ -23,8 +20,9 @@ const Spinner = styled.div`
   height: 40px;
   border: 4px solid #f3f3f3;
   border-top: 4px solid ${PURPLE};
+  border-right: 2px solid ${PURPLE};
   border-radius: 50%;
-  animation: ${spinAnimation} 1s linear infinite;
+  animation: ${spinAnimation} 0.5s linear infinite;
 `;
 
 const LoadingComponent = () => {
