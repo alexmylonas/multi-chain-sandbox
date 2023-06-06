@@ -18,10 +18,6 @@ const Main = styled.main`
   align-items: center;
   background-color: ${REACT_GRAY};
 
-  > * {
-    margin-bottom: 10px;
-  }
-
   @media (max-width: 768px) {
     width: 100%;
     height: auto;

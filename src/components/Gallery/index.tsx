@@ -2,18 +2,17 @@ import React from 'react';
 import styled from 'styled-components';
 import { ConnectionProps } from '../Sidebar';
 import useGetNFTs from '../../services/useGetNFTs';
-import LoadingComponent from '../Loader';
 import NFTCard from './NFTCard';
 import { NFT } from '../../services/type';
 import NFTView from './NFTView';
 import { utils } from 'ethers';
 import { DARK_GRAY } from '../../constants';
+import Breathe from '../Loader/Breathe';
+import FadeIn from '../FadeIn';
 
 const Body = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  padding: 1rem;
+  height: 100%;
 `;
 
 const GalleryView = styled.div`
@@ -36,7 +35,7 @@ const Worth = styled.p`
 `;
 const Gallery = React.memo((props: ConnectionProps) => {
   const address = props.connectedAccounts.ethereum;
-  const [selecteNft, setNFT] = React.useState<NFT>(null);
+  const [selectedNft, setNFT] = React.useState<NFT>(null);
   const { isLoading, data } = useGetNFTs(address);
 
   const onNFTClick = React.useCallback((nft) => {
@@ -55,17 +54,17 @@ const Gallery = React.memo((props: ConnectionProps) => {
   }, [nfts]);
 
   if (isLoading) {
-    return <LoadingComponent />;
+    return <Breathe />;
   }
 
   if (!nfts?.length) {
-    return <Body>No NFTs yet!</Body>;
+    return <FadeIn>No NFTs yet!</FadeIn>;
   }
 
-  if (selecteNft) {
+  if (selectedNft) {
     return (
       <NFTView
-        nft={selecteNft}
+        nft={selectedNft}
         onBack={() => {
           setNFT(null);
         }}
@@ -74,15 +73,17 @@ const Gallery = React.memo((props: ConnectionProps) => {
   }
 
   return (
-    <Body>
-      Gallery
-      <Worth>Total Estimated Worth: {utils.formatEther(BigInt(totalWorth))} ETH</Worth>
-      <GalleryView>
-        {data.collectibles?.map((nft) => (
-          <NFTCard key={nft.id} nft={nft} onClick={() => onNFTClick(nft)} />
-        ))}
-      </GalleryView>
-    </Body>
+    <FadeIn>
+      <Body>
+        Gallery
+        <Worth>Total Estimated Worth: {utils.formatEther(BigInt(totalWorth))} ETH</Worth>
+        <GalleryView>
+          {data.collectibles?.map((nft) => (
+            <NFTCard key={nft.id} nft={nft} onClick={() => onNFTClick(nft)} />
+          ))}
+        </GalleryView>
+      </Body>
+    </FadeIn>
   );
 });
 

@@ -5,6 +5,7 @@ import { SupportedChainIcons, SupportedChainNames, SupportedEVMChainIds } from '
 import { hexToRGB } from '../../utils';
 import Button from '../Button';
 import { ConnectionProps } from '../Sidebar';
+import FadeIn from '../FadeIn';
 
 const Body = styled.div`
   display: flex;
@@ -143,7 +144,7 @@ const ChainHeader = styled.div`
 const Home = React.memo((props: ConnectionProps) => {
   const { connectedAccounts, connectedMethods } = props;
   return (
-    <>
+    <FadeIn>
       <Body>
         <Link>
           <img src="https://phantom.app/img/phantom-logo.svg" alt="Phantom" width="200" />
@@ -228,7 +229,7 @@ const Home = React.memo((props: ConnectionProps) => {
         </span>{' '}
         by the <a href="https://phantom.app">Phantom</a> team
       </Tag>
-    </>
+    </FadeIn>
   );
 });
 
