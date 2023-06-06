@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import type { NFT } from '../../services/type';
 import React from 'react';
+import FadeIn from '../FadeIn';
 
 const Collectible = styled.div<{ imageUrl: string }>`
   display: flex;
@@ -26,9 +27,11 @@ const Name = styled.p`
 const NFTCard = React.memo((props: { nft: NFT; onClick: () => void }) => {
   const { nft, onClick } = props;
   return (
-    <Collectible imageUrl={nft.media.image.url} onClick={onClick}>
-      <Name>{nft.collection.name}</Name>
-    </Collectible>
+    <FadeIn>
+      <Collectible imageUrl={nft.media.image.url} onClick={onClick}>
+        <Name>{nft.collection.name}</Name>
+      </Collectible>
+    </FadeIn>
   );
 });
 
