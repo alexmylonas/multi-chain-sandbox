@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { DARK_GRAY, PURPLE } from '../../constants';
 import IconHome from '../../icons/IconHome';
 import IconGrid from '../../icons/IconGrid';
