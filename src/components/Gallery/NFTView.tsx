@@ -2,7 +2,8 @@ import React from 'react';
 import { NFT } from '../../services/type';
 import styled from 'styled-components';
 import { utils } from 'ethers';
-import { DARK_GRAY, GRAY, LIGHT_GRAY, REACT_GRAY } from '../../constants';
+import { GRAY, LIGHT_GRAY, REACT_GRAY } from '../../constants';
+import FadeIn from '../FadeIn';
 
 const NFTDetails = styled.div`
   display: flex;
@@ -53,25 +54,27 @@ const Divider = styled.div`
 
 const NFTView = ({ nft, onBack }: { nft: NFT; onBack: () => void }) => {
   return (
-    <NFTDetails>
-      <BackButton onClick={onBack}> &#8592; Back </BackButton>
-      <Title>{nft.name}</Title>
-      <img src={nft.media.image.url} alt={nft.name} />
-      <CollectionCard>
-        <Label>Description</Label>
-        <p>{nft.collection.description}</p>
-        <Divider />
-        <Label>Collection</Label>
-        <p>{nft.collection.name}</p>
-        {nft.collection.floorPrice?.price && (
-          <>
-            <Divider />
-            <Label>Floor Price</Label>
-            <p>{utils.formatEther(BigInt(nft.collection.floorPrice?.price))} ETH</p>
-          </>
-        )}
-      </CollectionCard>
-    </NFTDetails>
+    <FadeIn>
+      <NFTDetails>
+        <BackButton onClick={onBack}> &#8592; Back </BackButton>
+        <Title>{nft.name}</Title>
+        <img src={nft.media.image.url} alt={nft.name} />
+        <CollectionCard>
+          <Label>Description</Label>
+          <p>{nft.collection.description}</p>
+          <Divider />
+          <Label>Collection</Label>
+          <p>{nft.collection.name}</p>
+          {nft.collection.floorPrice?.price && (
+            <>
+              <Divider />
+              <Label>Floor Price</Label>
+              <p>{utils.formatEther(BigInt(nft.collection.floorPrice?.price))} ETH</p>
+            </>
+          )}
+        </CollectionCard>
+      </NFTDetails>
+    </FadeIn>
   );
 };
 
