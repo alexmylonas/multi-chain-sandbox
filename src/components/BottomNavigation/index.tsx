@@ -75,9 +75,7 @@ const BottomNavigation = React.memo(({ navigate, active }: Props) => {
           <IconHome height="24px" width="24px" />
         </NavItem>
         <NavItem active={active === Routes.NFTs} tabIndex={Routes.NFTs} onClick={() => navigate(Routes.NFTs)}>
-          <div>
-            <IconGrid height="24px" width="24px" />
-          </div>
+          <IconGrid height="24px" width="24px" />
         </NavItem>
         <NavItem active={active === Routes.Trading} tabIndex={Routes.Trading} onClick={() => navigate(Routes.Trading)}>
           <IconSwap height="24px" width="24px" />
