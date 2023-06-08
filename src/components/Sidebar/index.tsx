@@ -4,6 +4,8 @@ import { REACT_GRAY } from '../../constants';
 import Button from '../Button';
 import { ConnectedAccounts, ConnectedMethods } from '../../App';
 import ConnectedRoutes from '../ConnectedRoutes';
+import { EthereumProvider } from '../../contexts/EthereumContext';
+import { PhantomEthereumProvider, TLog } from 'types';
 
 // =============================================================================
 // Styled Components
@@ -32,6 +34,8 @@ export interface ConnectionProps {
   connectedMethods: ConnectedMethods[];
   connectedAccounts: ConnectedAccounts;
   connect: () => Promise<void>;
+  createLog: (l: TLog) => void;
+  ethProvider: PhantomEthereumProvider | undefined;
 }
 
 // =============================================================================
@@ -39,11 +43,13 @@ export interface ConnectionProps {
 // =============================================================================
 
 const Sidebar = React.memo((props: ConnectionProps) => {
-  const { connectedAccounts, connect } = props;
+  const { connectedAccounts, connect, createLog, ethProvider } = props;
   return (
     <Main>
-      {connectedAccounts?.solana ? (
-        <ConnectedRoutes {...props} />
+      {connectedAccounts?.ethereum ? (
+        <EthereumProvider address={connectedAccounts.ethereum} createLog={createLog} ethProvider={ethProvider}>
+          <ConnectedRoutes {...props} />
+        </EthereumProvider>
       ) : (
         // not connected
         <Button data-testid="connect-to-phantom" onClick={connect} style={{ marginTop: '15px' }}>

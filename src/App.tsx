@@ -19,7 +19,7 @@ import {
   signMessageOnSolana,
 } from './utils';
 
-import { PhantomInjectedProvider, SupportedEVMChainIds, TLog } from './types';
+import { PhantomEthereumProvider, PhantomInjectedProvider, SupportedEVMChainIds, TLog } from './types';
 
 import { Logs, NoProvider, Sidebar } from './components';
 import { connect, silentlyConnect } from './utils/connect';
@@ -77,6 +77,8 @@ interface Props {
   handleConnect: () => Promise<void>;
   logs: TLog[];
   clearLogs: () => void;
+  createLog: (log: TLog) => void;
+  ethProvider: PhantomEthereumProvider | null;
 }
 
 // =============================================================================
@@ -322,6 +324,8 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
     handleConnect,
     logs,
     clearLogs,
+    createLog,
+    ethProvider: provider?.ethereum,
   };
 };
 
@@ -330,11 +334,17 @@ const useProps = (provider: PhantomInjectedProvider | null): Props => {
 // =============================================================================
 
 const StatelessApp = React.memo((props: Props) => {
-  const { connectedAccounts, connectedMethods, handleConnect, logs, clearLogs } = props;
+  const { connectedAccounts, connectedMethods, handleConnect, logs, clearLogs, createLog, ethProvider } = props;
 
   return (
     <StyledApp>
-      <Sidebar connectedAccounts={connectedAccounts} connectedMethods={connectedMethods} connect={handleConnect} />
+      <Sidebar
+        connectedAccounts={connectedAccounts}
+        connectedMethods={connectedMethods}
+        connect={handleConnect}
+        createLog={createLog}
+        ethProvider={ethProvider}
+      />
       <Logs connectedAccounts={connectedAccounts} logs={logs} clearLogs={clearLogs} />
     </StyledApp>
   );
