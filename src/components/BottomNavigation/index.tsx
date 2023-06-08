@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import { DARK_GRAY, PURPLE } from '../../constants';
-import IconHome from '../../icons/IconHome';
-import IconGrid from '../../icons/IconGrid';
-import { Routes } from '../ConnectedRoutes';
 import React from 'react';
-import IconSwap from '../../icons/IconSwap';
+import styled from 'styled-components';
+import IconSwap from 'icons/IconSwap';
+import IconGrid from 'icons/IconGrid';
+import IconHome from 'icons/IconHome';
+import { DARK_GRAY, PURPLE } from '../../constants';
+import { Routes } from '../ConnectedRoutes';
 
 const NavPositioner = styled.div`
   position: sticky;
@@ -25,13 +25,8 @@ const NavItem = styled.button<{ active: boolean }>`
   border: none;
   background: none;
   cursor: pointer;
-  // checking if the button is active
-  // if it is, we want to change the color of the icon
-  // if not, we want to keep it the same
-  // also top border should be purple
   width: 100%;
   padding: 16px 0;
-  // border-top: 2px solid ${({ active }) => (active ? PURPLE : 'transparent')};
 `;
 
 const Border = styled.div<{ activeIndex: number; width: number }>`

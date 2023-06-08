@@ -1,5 +1,6 @@
 export enum ChainIds {
   Ethereum = 'eip155:1',
+  Goerli = 'eip155:5',
 }
 
 export type AddressInput = {
@@ -30,15 +31,21 @@ export type NFT = {
     // If floor price is null, no item is for sale
     floorPrice?: {
       price: number;
-    }
+    };
   };
 
-  media: {
+  media?: {
     type: 'image' | 'video';
     image: {
       url: string;
-    }
-  }
+    };
+  };
+
+  chainData?: {
+    id: string;
+    contract: string;
+    standard: 'ERC721' | 'ERC1155';
+  };
 
   balance: string;
   tokenCount: number;

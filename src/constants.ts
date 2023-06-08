@@ -49,3 +49,5 @@ export const SUPPORTED_CHAINS = {
     icon: SupportedChainIcons.Solana,
   },
 };
+
+export const NO_IMAGE_URL = '/images/no-img-placeholder.png';
