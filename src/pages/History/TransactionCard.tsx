@@ -2,6 +2,7 @@ import React from 'react';
 import { Transaction, TransactionsTypes } from 'services/types';
 import styled from 'styled-components';
 import { DARK_GRAY, GRAY } from '../../constants';
+import ImageWithFallback from 'components/ImageWithFallback';
 
 const TransactionMain = styled.div`
   display: flex;
@@ -44,12 +45,6 @@ type Props = {
   tx: Transaction;
 };
 
-const SquareImage = styled.img`
-  height: ${(props) => props.height};
-  width: ${(props) => props.height};
-  border-radius: 1rem;
-`;
-
 const TxInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -81,7 +76,11 @@ const TransactionCard = React.memo(({ tx }: Props) => {
         <TransactionMain>
           <TransactionDate>{formartDate(tx.timestamp)}</TransactionDate>
           <TxBody>
-            <SquareImage src={tx.interactionData.balanceChanges[0]?.token.logoURI} height="60px" />
+            <ImageWithFallback
+              src={tx.interactionData.balanceChanges[0]?.token.logoURI}
+              alt={tx.interactionData.balanceChanges[0]?.token.displayName}
+              height="60px"
+            />
             <TxInfo>
               {tx.interactionData.balanceChanges[0]?.to !== tx.owner ? (
                 <>
@@ -100,11 +99,14 @@ const TransactionCard = React.memo(({ tx }: Props) => {
         <TransactionMain>
           <TransactionDate>{formartDate(tx.timestamp)}</TransactionDate>
           <TxBody>
-            <SquareImage src={tx.interactionData.item.logoURI} height="60px" />
+            <ImageWithFallback
+              src={tx.interactionData.item.logoURI}
+              alt={tx.interactionData.item.displayName}
+              height="60px"
+            />
             <TxInfo>
               <>
                 <TxTitle>Bought: {tx.interactionData.item.displayName}</TxTitle>
-                {/* <TxAddress>To {formatAddress(tx.interactionData.balanceChanges[0]?.to)}</TxAddress> */}
               </>
             </TxInfo>
           </TxBody>
