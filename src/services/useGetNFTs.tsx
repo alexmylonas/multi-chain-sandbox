@@ -7,7 +7,7 @@ const useGetNFTs = (address: string) => {
     addresses: [
       {
         address,
-        chainId: ChainIds.Ethereum,
+        chainId: ChainIds.Goerli,
       },
     ],
   };
