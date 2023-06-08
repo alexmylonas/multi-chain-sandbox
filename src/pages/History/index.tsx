@@ -25,7 +25,15 @@ const Body = styled.div`
   height: 100vh;
 `;
 
+const CardWrapper = styled.a`
+  text-decoration: none;
+`;
+
 type Props = {};
+
+const handleTransactionClick = (txHash: string) => {
+  return `https://etherscan.io/tx/${txHash}`;
+};
 
 const History = React.memo((props: Props) => {
   const { address } = useEthereum();
@@ -44,7 +52,11 @@ const History = React.memo((props: Props) => {
         <TabTitle>Recent Activity</TabTitle>
         <HistoryMain>
           {data?.results.map((item) => {
-            return <TransactionCard key={item.id} tx={item} />;
+            return (
+              <CardWrapper href={handleTransactionClick(item.chainMeta.transactionId)} target="_blank" rel="noreferrer">
+                <TransactionCard tx={item} />
+              </CardWrapper>
+            );
           })}
         </HistoryMain>
       </FadeIn>
