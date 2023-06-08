@@ -35,17 +35,25 @@ const Actions = styled.div`
 
 const SendNFT = ({ tokenId, contractAddress }: { tokenId: string; contractAddress: string }) => {
   const [inSentMode, setInSentMode] = React.useState(false);
+  const [inProgress, setInProgress] = React.useState(false);
+  const [txHash, setTxHash] = React.useState<string>(null);
   const [receiverAddress, setReceiverAddress] = React.useState('');
   const { address, transferToken } = useEthereum();
 
-  const onSend = () => {
-    transferToken({
+  const onSend = async () => {
+    setInProgress(true);
+    const txH = await transferToken({
       chainId: SupportedEVMChainIds.EthereumGoerli,
       contractAddress,
       tokenId,
       fromAddress: address,
       transferToAddress: receiverAddress,
     });
+    if (txH) {
+      setTxHash(txH);
+      return setInProgress(false);
+    }
+    setInProgress(false);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +65,16 @@ const SendNFT = ({ tokenId, contractAddress }: { tokenId: string; contractAddres
     setReceiverAddress('');
   };
 
+  if (inProgress) {
+    return <p>Sending...</p>;
+  }
+  if (txHash) {
+    return (
+      <a href={`https://goerli.etherscan.io/tx/${txHash}`} target="_blank" rel="noreferrer">
+        View in Etherscan
+      </a>
+    );
+  }
   if (!inSentMode) {
     return (
       <Button data-test-id="transfer" className="secondary" onClick={() => setInSentMode(true)}>

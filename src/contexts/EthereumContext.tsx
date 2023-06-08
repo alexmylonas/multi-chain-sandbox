@@ -14,7 +14,7 @@ type HandleCollectibleTransferOnEthereum = {
 
 type EthereumContextValue = {
   address: string;
-  transferToken: (params: HandleCollectibleTransferOnEthereum) => void;
+  transferToken: (params: HandleCollectibleTransferOnEthereum) => Promise<string>;
 };
 
 const EthereumContext = React.createContext<EthereumContextValue>(null);
@@ -66,6 +66,7 @@ const EthereumProvider = ({ children, address, createLog, ethProvider }: PropsWi
         pollEthereumTransactionReceipt(txHash, ethProvider, createLog).catch((error) => {
           throw error;
         });
+        return txHash;
       } catch (error) {
         createLog({
           providerType: 'ethereum',
