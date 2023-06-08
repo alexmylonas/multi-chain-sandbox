@@ -24,7 +24,6 @@ const TransactionDate = styled.div`
 
 const TxBody = styled.div`
   display: flex;
-  // flex-wrap: wrap;
   align-content: center;
   gap: 0.5rem;
   background-color: ${DARK_GRAY};
