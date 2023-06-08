@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import type { NFT } from '../../services/type';
+import type { NFT } from '../../services/types';
 import React from 'react';
 import FadeIn from '../FadeIn';
 import { NO_IMAGE_URL } from '../../constants';

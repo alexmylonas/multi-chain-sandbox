@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ConnectionProps } from '../Sidebar';
 import useGetNFTs from '../../services/useGetNFTs';
 import NFTCard from './NFTCard';
-import { NFT } from '../../services/type';
+import { NFT } from '../../services/types';
 import NFTView from './NFTView';
 import { utils } from 'ethers';
 import { DARK_GRAY } from '../../constants';

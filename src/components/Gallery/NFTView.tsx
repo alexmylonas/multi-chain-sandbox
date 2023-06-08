@@ -1,5 +1,5 @@
 import React from 'react';
-import { NFT } from '../../services/type';
+import { NFT } from '../../services/types';
 import styled from 'styled-components';
 import { utils } from 'ethers';
 import { GRAY, LIGHT_GRAY, NO_IMAGE_URL, REACT_GRAY } from '../../constants';
