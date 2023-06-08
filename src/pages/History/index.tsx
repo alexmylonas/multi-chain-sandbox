@@ -5,6 +5,7 @@ import useListHistory from 'services/useListHistory';
 import styled from 'styled-components';
 import TransactionCard from './TransactionCard';
 import FadeIn from 'components/FadeIn';
+import TabTitle from 'components/TabTitle';
 
 const HistoryMain = styled.div`
   display: flex;
@@ -12,12 +13,6 @@ const HistoryMain = styled.div`
   align-items: center;
   justify-content: center;
   margin: 2rem auto;
-`;
-
-const Title = styled.h1`
-  font-size: 1.5rem;
-  color: #999;
-  margin-bottom: 0.5rem;
 `;
 
 const Body = styled.div`
@@ -46,7 +41,7 @@ const History = React.memo((props: Props) => {
   return (
     <Body>
       <FadeIn>
-        <Title>Recent Activity</Title>
+        <TabTitle>Recent Activity</TabTitle>
         <HistoryMain>
           {data?.results.map((item) => {
             return <TransactionCard key={item.id} tx={item} />;

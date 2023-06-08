@@ -1,7 +1,7 @@
 import React from 'react';
 import { Transaction, TransactionsTypes } from 'services/types';
 import styled from 'styled-components';
-import { DARK_GRAY, GRAY, REACT_GRAY, RED } from '../../constants';
+import { DARK_GRAY, GRAY } from '../../constants';
 
 const TransactionMain = styled.div`
   display: flex;

@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { PURPLE } from '../../constants';
 import SaleInfo from './SaleInfo';
 import FadeIn from '../FadeIn';
+import TabTitle from 'components/TabTitle';
 
 const Body = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   padding: 20px;
   max-width: 350px;
   height: 100vh;
@@ -112,23 +112,25 @@ const Trading = React.memo((props: ConnectionProps) => {
   return (
     <FadeIn>
       <Body>
-        <h1>Trading</h1>
-        <CoinInput>
-          <InputTitle>You Pay</InputTitle>
-          <InputWrapper>
-            <Input value={state.amountToSell} placeholder="0" onChange={handleInputChange} type="number" />
-            <div>{state.coinToSell}</div>
-          </InputWrapper>
-        </CoinInput>
-        <SwapButton onClick={() => dispatch({ type: 'swap' })}>Swap</SwapButton>
-        <CoinInput>
-          <InputTitle>You Receive</InputTitle>
-          <InputWrapper>
-            <Input value={state.amountToBuy} placeholder="0" onChange={handleInputChange} type="number" />
-            <div>{state.coinToBuy}</div>
-          </InputWrapper>
-        </CoinInput>
-        <SaleInfo />
+        <TabTitle>Trading</TabTitle>
+        <>
+          <CoinInput>
+            <InputTitle>You Pay</InputTitle>
+            <InputWrapper>
+              <Input value={state.amountToSell} placeholder="0" onChange={handleInputChange} type="number" />
+              <div>{state.coinToSell}</div>
+            </InputWrapper>
+          </CoinInput>
+          <SwapButton onClick={() => dispatch({ type: 'swap' })}>Swap</SwapButton>
+          <CoinInput>
+            <InputTitle>You Receive</InputTitle>
+            <InputWrapper>
+              <Input value={state.amountToBuy} placeholder="0" onChange={handleInputChange} type="number" />
+              <div>{state.coinToBuy}</div>
+            </InputWrapper>
+          </CoinInput>
+          <SaleInfo />
+        </>
       </Body>
     </FadeIn>
   );

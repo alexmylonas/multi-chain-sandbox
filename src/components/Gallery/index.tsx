@@ -9,6 +9,7 @@ import { utils } from 'ethers';
 import { DARK_GRAY } from '../../constants';
 import Breathe from '../Loader/Breathe';
 import FadeIn from '../FadeIn';
+import TabTitle from 'components/TabTitle';
 
 const Body = styled.div`
   padding: 1rem;
@@ -75,7 +76,7 @@ const Gallery = React.memo((props: ConnectionProps) => {
   return (
     <FadeIn>
       <Body>
-        Gallery
+        <TabTitle>Gallery</TabTitle>
         <Worth>Total Estimated Worth: {utils.formatEther(BigInt(totalWorth))} ETH</Worth>
         <GalleryView>
           {data.collectibles?.map((nft) => (
