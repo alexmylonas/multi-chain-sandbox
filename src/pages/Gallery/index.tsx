@@ -1,15 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-import { ConnectionProps } from '../../components/Sidebar';
-import useGetNFTs from '../../services/useGetNFTs';
-import NFTCard from './NFTCard';
-import { NFT } from '../../services/types';
-import NFTView from './NFTView';
 import { utils } from 'ethers';
+import styled from 'styled-components';
+import { ConnectionProps } from 'components/Sidebar';
+import { NFT } from 'services/types';
+import useGetNFTs from 'services/useGetNFTs';
+import { FadeIn, Breath, TabTitle } from 'components';
 import { DARK_GRAY } from '../../constants';
-import Breathe from '../../components/Loader/Breathe';
-import FadeIn from '../../components/FadeIn';
-import TabTitle from 'components/TabTitle';
+import CollectibleCard from './components/CollectibleCard';
+import CollectibleDetails from './components/CollectibleDetails';
 
 const Body = styled.div`
   padding: 1rem;
@@ -56,7 +54,7 @@ const Gallery = React.memo((props: ConnectionProps) => {
   }, [nfts]);
 
   if (isLoading) {
-    return <Breathe />;
+    return <Breath />;
   }
 
   if (!nfts?.length) {
@@ -72,7 +70,7 @@ const Gallery = React.memo((props: ConnectionProps) => {
 
   if (selectedNft) {
     return (
-      <NFTView
+      <CollectibleDetails
         nft={selectedNft}
         onBack={() => {
           setNFT(null);
@@ -88,7 +86,7 @@ const Gallery = React.memo((props: ConnectionProps) => {
         <Worth>Total Estimated Worth: {utils.formatEther(BigInt(totalWorth))} ETH</Worth>
         <GalleryView>
           {data.collectibles?.map((nft) => (
-            <NFTCard key={nft.id} nft={nft} onClick={() => onNFTClick(nft)} />
+            <CollectibleCard key={nft.id} nft={nft} onClick={() => onNFTClick(nft)} />
           ))}
         </GalleryView>
       </Body>

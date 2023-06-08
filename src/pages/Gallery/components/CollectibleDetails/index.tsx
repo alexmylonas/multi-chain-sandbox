@@ -1,10 +1,10 @@
 import React from 'react';
-import { NFT } from '../../services/types';
+import { NFT } from 'services/types';
 import styled from 'styled-components';
 import { utils } from 'ethers';
-import { GRAY, LIGHT_GRAY, NO_IMAGE_URL, REACT_GRAY } from '../../constants';
-import FadeIn from '../../components/FadeIn';
-import SendNFT from './SendNFT';
+import { GRAY, LIGHT_GRAY, NO_IMAGE_URL, REACT_GRAY } from '../../../../constants';
+import FadeIn from 'components/FadeIn';
+import SendCollectible from '../SendCollectible';
 
 const NFTDetails = styled.div`
   display: flex;
@@ -54,7 +54,7 @@ const Divider = styled.div`
   margin-top: 0.5rem;
 `;
 
-const NFTView = ({ nft, onBack }: { nft: NFT; onBack: () => void }) => {
+const CollectibleDetails = ({ nft, onBack }: { nft: NFT; onBack: () => void }) => {
   const { name, chainData, media, collection } = nft;
   const imageUrl = media?.image.url ?? NO_IMAGE_URL;
   const hasPrice = Boolean(nft.collection.floorPrice?.price);
@@ -67,7 +67,7 @@ const NFTView = ({ nft, onBack }: { nft: NFT; onBack: () => void }) => {
         <img src={imageUrl} alt={name} />
         {/* Only allow transfer for ERC721 collectibles */}
         {chainData?.standard === 'ERC721' ? (
-          <SendNFT tokenId={chainData.id} contractAddress={chainData.contract} />
+          <SendCollectible tokenId={chainData.id} contractAddress={chainData.contract} />
         ) : null}
         <CollectionCard>
           <Label>Description</Label>
@@ -95,4 +95,4 @@ const NFTView = ({ nft, onBack }: { nft: NFT; onBack: () => void }) => {
   );
 };
 
-export default NFTView;
+export default CollectibleDetails;

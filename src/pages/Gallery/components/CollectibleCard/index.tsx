@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import type { NFT } from '../../services/types';
+import type { NFT } from 'services/types';
 import React from 'react';
-import FadeIn from '../../components/FadeIn';
-import { NO_IMAGE_URL } from '../../constants';
+import FadeIn from 'components/FadeIn';
+import { NO_IMAGE_URL } from '../../../../constants';
 
 const Collectible = styled.div<{ imageUrl: string }>`
   display: flex;
@@ -27,7 +27,7 @@ const Name = styled.p`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-const NFTCard = React.memo((props: { nft: NFT; onClick: () => void }) => {
+const CollectibleCard = React.memo((props: { nft: NFT; onClick: () => void }) => {
   const { nft, onClick } = props;
   const imageUrl = nft.media?.image.url ?? NO_IMAGE_URL;
   return (
@@ -39,4 +39,4 @@ const NFTCard = React.memo((props: { nft: NFT; onClick: () => void }) => {
   );
 });
 
-export default NFTCard;
+export default CollectibleCard;

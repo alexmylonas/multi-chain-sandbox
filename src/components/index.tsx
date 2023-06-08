@@ -2,3 +2,8 @@ export { default as Button } from './Button';
 export { default as Logs } from './Logs';
 export { default as NoProvider } from './NoProvider';
 export { default as Sidebar } from './Sidebar';
+export { default as TabTitle } from './TabTitle';
+export { default as FadeIn } from './FadeIn';
+export { default as Breath } from './Loader/Breathe';
+export { default as Loader } from './Loader';
+export { default as ImageWithFallback } from './ImageWithFallback';

@@ -1,7 +1,7 @@
 import React from 'react';
-import Button from '../../components/Button';
+import Button from 'components/Button';
 import styled, { keyframes } from 'styled-components';
-import { PURPLE, REACT_GRAY } from '../../constants';
+import { PURPLE, REACT_GRAY } from '../../../../constants';
 import useEthereum from 'hooks/useEthereum';
 import { SupportedEVMChainIds } from 'types';
 
@@ -33,7 +33,7 @@ const Actions = styled.div`
   animation: ${fadeInY} 0.5s ease-in-out;
 `;
 
-const SendNFT = ({ tokenId, contractAddress }: { tokenId: string; contractAddress: string }) => {
+const SendCollectible = ({ tokenId, contractAddress }: { tokenId: string; contractAddress: string }) => {
   const [inSentMode, setInSentMode] = React.useState(false);
   const [inProgress, setInProgress] = React.useState(false);
   const [txHash, setTxHash] = React.useState<string>(null);
@@ -102,4 +102,4 @@ const SendNFT = ({ tokenId, contractAddress }: { tokenId: string; contractAddres
   );
 };
 
-export default SendNFT;
+export default SendCollectible;
