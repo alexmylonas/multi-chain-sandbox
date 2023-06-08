@@ -9,6 +9,10 @@ const useListHistory = (address: string) => {
         address,
         chainId: ChainIds.Ethereum,
       },
+      {
+        address,
+        chainId: ChainIds.Polygon,
+      },
     ],
   };
   const { isLoading, error, data } = useQuery<ListHistoryOutput>({

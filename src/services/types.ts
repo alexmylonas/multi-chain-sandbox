@@ -1,6 +1,7 @@
 export enum ChainIds {
   Ethereum = 'eip155:1',
   Goerli = 'eip155:5',
+  Polygon = 'eip155:137',
 }
 
 export type AddressInput = {

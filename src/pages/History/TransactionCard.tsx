@@ -24,7 +24,7 @@ const TransactionDate = styled.div`
 
 const TxBody = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
   align-content: center;
   gap: 0.5rem;
   background-color: ${DARK_GRAY};
@@ -61,6 +61,7 @@ const TxInfo = styled.div`
 const TxTitle = styled.p`
   font-size: 1rem;
   margin-bottom: 0.5rem;
+  word-break: break-all;
 `;
 
 const TxAddress = styled.p`
