@@ -14,6 +14,7 @@ import TabTitle from 'components/TabTitle';
 const Body = styled.div`
   padding: 1rem;
   height: 100vh;
+  min-width: 350px;
 `;
 
 const GalleryView = styled.div`
@@ -59,7 +60,14 @@ const Gallery = React.memo((props: ConnectionProps) => {
   }
 
   if (!nfts?.length) {
-    return <FadeIn>No NFTs yet!</FadeIn>;
+    return (
+      <FadeIn>
+        <Body>
+          <TabTitle>Gallery</TabTitle>
+          No NFTs yet!
+        </Body>
+      </FadeIn>
+    );
   }
 
   if (selectedNft) {
