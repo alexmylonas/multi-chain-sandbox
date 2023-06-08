@@ -88,6 +88,7 @@ const pollEthereumTransactionReceipt = async (
         message: `Transaction: ${txHash}`,
         messageTwo: `Status: Failed`,
       });
+      clearInterval(interval);
     }
   }, POLLING_INTERVAL);
 };
