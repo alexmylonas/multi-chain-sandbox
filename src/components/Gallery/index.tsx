@@ -12,7 +12,7 @@ import FadeIn from '../FadeIn';
 
 const Body = styled.div`
   padding: 1rem;
-  height: 100%;
+  height: 100vh;
 `;
 
 const GalleryView = styled.div`

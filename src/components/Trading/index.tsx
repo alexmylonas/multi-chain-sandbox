@@ -11,6 +11,7 @@ const Body = styled.div`
   align-items: center;
   padding: 20px;
   max-width: 350px;
+  height: 100vh;
 `;
 
 const initialState = {
