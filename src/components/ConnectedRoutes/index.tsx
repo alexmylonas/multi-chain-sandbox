@@ -6,11 +6,13 @@ import BottomNavigation from '../BottomNavigation';
 import Gallery from '../Gallery';
 import { queryClient } from '../../services/api';
 import Trading from '../Trading';
+import History from 'pages/History';
 
 export enum Routes {
   Home,
   NFTs,
   Trading,
+  History,
 }
 const ConnectedRoutes = React.memo((props: ConnectionProps) => {
   const [route, setRoute] = React.useState<Routes>(Routes.Home);
@@ -19,6 +21,8 @@ const ConnectedRoutes = React.memo((props: ConnectionProps) => {
     Comp = Gallery;
   } else if (route === Routes.Trading) {
     Comp = Trading;
+  } else if (route === Routes.History) {
+    Comp = History;
   }
 
   return (

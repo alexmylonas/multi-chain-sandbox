@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import IconSwap from 'icons/IconSwap';
 import IconGrid from 'icons/IconGrid';
 import IconHome from 'icons/IconHome';
+import IconThunderbolt from 'icons/IconThunderbolt';
 import { DARK_GRAY, PURPLE } from '../../constants';
 import { Routes } from '../ConnectedRoutes';
 
@@ -54,7 +55,7 @@ const BottomNavigation = React.memo(({ navigate, active }: Props) => {
       return;
     }
     const handleResize = () => {
-      const componentWidth = tabWrapperRef.current.offsetWidth / 3;
+      const componentWidth = tabWrapperRef.current.offsetWidth / 4;
       setTabWidth(componentWidth);
     };
     handleResize();
@@ -74,6 +75,9 @@ const BottomNavigation = React.memo(({ navigate, active }: Props) => {
         </NavItem>
         <NavItem active={active === Routes.Trading} tabIndex={Routes.Trading} onClick={() => navigate(Routes.Trading)}>
           <IconSwap height="24px" width="24px" />
+        </NavItem>
+        <NavItem active={active === Routes.History} tabIndex={Routes.History} onClick={() => navigate(Routes.History)}>
+          <IconThunderbolt height="24px" width="24px" />
         </NavItem>
         <Border activeIndex={active} width={tabWidth} />
       </NavWrapper>

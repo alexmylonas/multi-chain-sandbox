@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Endpoints, apiUrl } from './api';
-import { ChainIds, GetNFTsInput, GetNFTsOutput } from './type';
+import { ChainIds, GetNFTsInput, GetNFTsOutput } from './types';
 
 const useGetNFTs = (address: string) => {
   const input: GetNFTsInput = {
