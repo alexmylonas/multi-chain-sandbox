@@ -23,21 +23,25 @@ const transferCollectibleOnEthereum = async (
   provider: PhantomEthereumProvider,
   contractAddress: string,
   tokenId: string,
+  fromAddress: string,
   transferToAddress: string
 ): Promise<string> => {
   try {
     //
     const ethersProvider = new providers.Web3Provider(provider as any);
     const contract = new Contract(contractAddress, iface, ethersProvider);
-    const owner: string = await contract.ownerOf(tokenId);
     /**
      * Building the transfer token transaction
      */
     const transferParams = {
-      from: owner.toLowerCase(),
+      from: fromAddress.toLowerCase(),
       to: contractAddress,
       gas: numToHexString(30000), // the max amount of gas to be used in the tx
-      data: contract.interface.encodeFunctionData('transferFrom', [owner.toLowerCase(), transferToAddress, tokenId]),
+      data: contract.interface.encodeFunctionData('transferFrom', [
+        fromAddress.toLowerCase(),
+        transferToAddress,
+        tokenId,
+      ]),
     };
 
     const txHash = await provider.request({

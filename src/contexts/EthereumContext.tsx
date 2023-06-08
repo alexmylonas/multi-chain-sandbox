@@ -8,6 +8,7 @@ type HandleCollectibleTransferOnEthereum = {
   chainId: SupportedEVMChainIds.EthereumMainnet | SupportedEVMChainIds.EthereumGoerli;
   contractAddress: string;
   tokenId: string;
+  fromAddress: string;
   transferToAddress: string;
 };
 
@@ -30,18 +31,31 @@ const EthereumProvider = ({ children, address, createLog, ethProvider }: PropsWi
    * @param chainId
    * @param contractAddress
    * @param tokenId
+   * @param fromAddress
    * @param transferToAddress
    * @returns {Promise<void>}
    */
   const handleCollectibleTransferOnEthereum = React.useCallback(
-    async ({ chainId, contractAddress, tokenId, transferToAddress }: HandleCollectibleTransferOnEthereum) => {
+    async ({
+      chainId,
+      contractAddress,
+      tokenId,
+      transferToAddress,
+      fromAddress,
+    }: HandleCollectibleTransferOnEthereum) => {
       if (!ethProvider) return;
       // set ethereum provider to the correct chainId
       const ready = await ensureEthereumChain(ethProvider, chainId, createLog);
       if (!ready) return;
       try {
         // send the transaction up to the network
-        const txHash = await transferCollectibleOnEthereum(ethProvider, contractAddress, tokenId, transferToAddress);
+        const txHash = await transferCollectibleOnEthereum(
+          ethProvider,
+          contractAddress,
+          tokenId,
+          fromAddress,
+          transferToAddress
+        );
         createLog({
           providerType: 'ethereum',
           status: 'info',

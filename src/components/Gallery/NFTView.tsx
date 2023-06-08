@@ -2,8 +2,9 @@ import React from 'react';
 import { NFT } from '../../services/type';
 import styled from 'styled-components';
 import { utils } from 'ethers';
-import { GRAY, LIGHT_GRAY, REACT_GRAY } from '../../constants';
+import { GRAY, LIGHT_GRAY, NO_IMAGE_URL, REACT_GRAY } from '../../constants';
 import FadeIn from '../FadeIn';
+import SendNFT from './SendNFT';
 
 const NFTDetails = styled.div`
   display: flex;
@@ -11,6 +12,7 @@ const NFTDetails = styled.div`
   justify-content: center;
   max-width: 300px;
   padding: 1rem;
+  gap: 1rem;
 `;
 
 const BackButton = styled.button`
@@ -22,10 +24,10 @@ const BackButton = styled.button`
 
 const CollectionCard = styled.div`
   background-color: ${LIGHT_GRAY};
-  margin-top: 1rem;
   border-radius: 0.3rem;
   p {
     padding: 0.5rem;
+    word-break: break-all;
   }
 `;
 
@@ -53,23 +55,38 @@ const Divider = styled.div`
 `;
 
 const NFTView = ({ nft, onBack }: { nft: NFT; onBack: () => void }) => {
+  const { name, chainData, media, collection } = nft;
+  const imageUrl = media?.image.url ?? NO_IMAGE_URL;
+  const hasPrice = Boolean(nft.collection.floorPrice?.price);
+
   return (
     <FadeIn>
       <NFTDetails>
         <BackButton onClick={onBack}> &#8592; Back </BackButton>
-        <Title>{nft.name}</Title>
-        <img src={nft.media.image.url} alt={nft.name} />
+        <Title>{name}</Title>
+        <img src={imageUrl} alt={name} />
+        {/* Only allow transfer for ERC721 collectibles */}
+        {chainData?.standard === 'ERC721' ? (
+          <SendNFT tokenId={chainData.id} contractAddress={chainData.contract} />
+        ) : null}
         <CollectionCard>
           <Label>Description</Label>
-          <p>{nft.collection.description}</p>
+          <p>{collection.description}</p>
           <Divider />
           <Label>Collection</Label>
-          <p>{nft.collection.name}</p>
-          {nft.collection.floorPrice?.price && (
+          <p>{collection.name}</p>
+          {hasPrice && (
             <>
               <Divider />
               <Label>Floor Price</Label>
-              <p>{utils.formatEther(BigInt(nft.collection.floorPrice?.price))} ETH</p>
+              <p>{utils.formatEther(BigInt(collection.floorPrice?.price))} ETH</p>
+            </>
+          )}
+          {chainData?.contract && (
+            <>
+              <Divider />
+              <Label>Contract</Label>
+              <p>{chainData.contract}</p>
             </>
           )}
         </CollectionCard>
