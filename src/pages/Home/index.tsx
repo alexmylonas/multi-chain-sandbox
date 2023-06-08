@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { DARK_GRAY, GRAY, PURPLE, WHITE } from '../../constants';
 import { SupportedChainIcons, SupportedChainNames, SupportedEVMChainIds } from '../../types';
 import { hexToRGB } from '../../utils';
-import Button from '../Button';
-import { ConnectionProps } from '../Sidebar';
-import FadeIn from '../FadeIn';
+import Button from '../../components/Button';
+import { ConnectionProps } from '../../components/Sidebar';
+import FadeIn from '../../components/FadeIn';
 
 const Body = styled.div`
   display: flex;

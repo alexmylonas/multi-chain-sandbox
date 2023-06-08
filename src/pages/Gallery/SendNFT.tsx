@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button';
+import Button from '../../components/Button';
 import styled, { keyframes } from 'styled-components';
 import { PURPLE, REACT_GRAY } from '../../constants';
 import useEthereum from 'hooks/useEthereum';

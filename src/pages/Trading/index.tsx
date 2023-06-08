@@ -1,9 +1,9 @@
 import React from 'react';
-import { ConnectionProps } from '../Sidebar';
+import { ConnectionProps } from '../../components/Sidebar';
 import styled from 'styled-components';
 import { PURPLE } from '../../constants';
 import SaleInfo from './SaleInfo';
-import FadeIn from '../FadeIn';
+import FadeIn from '../../components/FadeIn';
 import TabTitle from 'components/TabTitle';
 
 const Body = styled.div`

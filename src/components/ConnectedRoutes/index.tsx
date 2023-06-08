@@ -1,11 +1,11 @@
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ConnectionProps } from '../Sidebar';
-import Home from '../Home';
+import Home from '../../pages/Home';
 import BottomNavigation from '../BottomNavigation';
-import Gallery from '../Gallery';
+import Gallery from '../../pages/Gallery';
 import { queryClient } from '../../services/api';
-import Trading from '../Trading';
+import Trading from '../../pages/Trading';
 import History from 'pages/History';
 
 export enum Routes {
