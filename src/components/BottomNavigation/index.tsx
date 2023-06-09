@@ -55,7 +55,7 @@ const BottomNavigation = React.memo(({ navigate, active }: Props) => {
       return;
     }
     const handleResize = () => {
-      const componentWidth = tabWrapperRef.current.offsetWidth / 4;
+      const componentWidth = tabWrapperRef.current.offsetWidth / 5;
       setTabWidth(componentWidth);
     };
     handleResize();
@@ -77,6 +77,13 @@ const BottomNavigation = React.memo(({ navigate, active }: Props) => {
           <IconSwap height="24px" width="24px" />
         </NavItem>
         <NavItem active={active === Routes.History} tabIndex={Routes.History} onClick={() => navigate(Routes.History)}>
+          <IconThunderbolt height="24px" width="24px" />
+        </NavItem>
+        <NavItem
+          active={active === Routes.Interview}
+          tabIndex={Routes.Interview}
+          onClick={() => navigate(Routes.Interview)}
+        >
           <IconThunderbolt height="24px" width="24px" />
         </NavItem>
         <Border activeIndex={active} width={tabWidth} />
