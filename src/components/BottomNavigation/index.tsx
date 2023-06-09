@@ -4,6 +4,7 @@ import IconSwap from 'icons/IconSwap';
 import IconGrid from 'icons/IconGrid';
 import IconHome from 'icons/IconHome';
 import IconThunderbolt from 'icons/IconThunderbolt';
+import IconDollar from 'icons/IconDollar';
 import { DARK_GRAY, PURPLE } from '../../constants';
 import { Routes } from '../ConnectedRoutes';
 
@@ -84,7 +85,7 @@ const BottomNavigation = React.memo(({ navigate, active }: Props) => {
           tabIndex={Routes.Interview}
           onClick={() => navigate(Routes.Interview)}
         >
-          <IconThunderbolt height="24px" width="24px" />
+          <IconDollar height="24px" width="24px" />
         </NavItem>
         <Border activeIndex={active} width={tabWidth} />
       </NavWrapper>
