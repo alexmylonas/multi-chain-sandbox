@@ -5,7 +5,7 @@ import { ConnectionProps } from 'components/Sidebar';
 import { NFT } from 'services/types';
 import useGetNFTs from 'services/useGetNFTs';
 import { FadeIn, Breath, TabTitle } from 'components';
-import { DARK_GRAY, GRAY, LIGHT_GRAY, REACT_GRAY, WHITE } from '../../constants';
+import { DARK_GRAY, REACT_GRAY } from '../../constants';
 import CollectibleCard from './components/CollectibleCard';
 import CollectibleDetails from './components/CollectibleDetails';
 

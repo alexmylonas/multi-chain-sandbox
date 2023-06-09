@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const fadeIn = keyframes`
@@ -25,7 +25,7 @@ type Props = {
 
 const ImageWithFallback = ({ src, alt, height, fallbackSrc = '/images/no-img-placeholder.png' }: Props) => {
   const [imageSrc, setImageSrc] = useState<string>(src);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [, setIsLoading] = useState<boolean>(true);
 
   const handleImageLoad = (): void => {
     setIsLoading(false);
