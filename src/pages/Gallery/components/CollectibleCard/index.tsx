@@ -4,7 +4,7 @@ import React from 'react';
 import { FadeIn } from 'components';
 import { NO_IMAGE_URL } from '../../../../constants';
 
-const Collectible = styled.div<{ imageUrl: string }>`
+const Collectible = styled.button<{ imageUrl: string }>`
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -14,6 +14,7 @@ const Collectible = styled.div<{ imageUrl: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
+  height: 100%;
   cursor: pointer;
   border-radius: 0.5rem;
 `;
