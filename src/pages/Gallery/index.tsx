@@ -5,22 +5,42 @@ import { ConnectionProps } from 'components/Sidebar';
 import { NFT } from 'services/types';
 import useGetNFTs from 'services/useGetNFTs';
 import { FadeIn, Breath, TabTitle } from 'components';
-import { DARK_GRAY } from '../../constants';
+import { DARK_GRAY, GRAY, LIGHT_GRAY, REACT_GRAY, WHITE } from '../../constants';
 import CollectibleCard from './components/CollectibleCard';
 import CollectibleDetails from './components/CollectibleDetails';
 
 const Body = styled.div`
   padding: 1rem;
-  height: 100vh;
+  display: flex;
+  justify-content: center;
   min-width: 350px;
+  height: 100vh;
+  width: 100%;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${REACT_GRAY};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
 `;
 
 const GalleryView = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
-  width: 100%;
-  margin-top: 20px;
+  margin: 20px 0px;
   div {
     aspect-ratio: 1;
   }
@@ -80,8 +100,8 @@ const Gallery = React.memo((props: ConnectionProps) => {
   }
 
   return (
-    <FadeIn>
-      <Body>
+    <Body>
+      <FadeIn>
         <TabTitle>Gallery</TabTitle>
         <Worth>Total Estimated Worth: {utils.formatEther(BigInt(totalWorth))} ETH</Worth>
         <GalleryView>
@@ -89,8 +109,8 @@ const Gallery = React.memo((props: ConnectionProps) => {
             <CollectibleCard key={nft.id} nft={nft} onClick={() => onNFTClick(nft)} />
           ))}
         </GalleryView>
-      </Body>
-    </FadeIn>
+      </FadeIn>
+    </Body>
   );
 });
 

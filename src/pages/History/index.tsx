@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import TransactionCard from './TransactionCard';
 import FadeIn from 'components/FadeIn';
 import TabTitle from 'components/TabTitle';
+import { REACT_GRAY } from '../../constants';
 
 const HistoryMain = styled.div`
   display: flex;
@@ -23,6 +24,23 @@ const Body = styled.div`
   width: 100%;
   overflow-y: scroll;
   height: 100vh;
+
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${REACT_GRAY};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
 `;
 
 const CardWrapper = styled.a`
@@ -53,7 +71,12 @@ const History = React.memo((props: Props) => {
         <HistoryMain>
           {data?.results.map((item) => {
             return (
-              <CardWrapper href={handleTransactionClick(item.chainMeta.transactionId)} target="_blank" rel="noreferrer">
+              <CardWrapper
+                key={item.id}
+                href={handleTransactionClick(item.chainMeta.transactionId)}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <TransactionCard tx={item} />
               </CardWrapper>
             );
