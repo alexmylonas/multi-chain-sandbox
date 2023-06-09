@@ -7,3 +7,4 @@ export { default as FadeIn } from './FadeIn';
 export { default as Breath } from './Loader/Breathe';
 export { default as Loader } from './Loader';
 export { default as ImageWithFallback } from './ImageWithFallback';
+export { default as Spinner } from './Loader/Spinner';

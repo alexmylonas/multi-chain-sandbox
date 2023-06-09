@@ -11,7 +11,7 @@ const useGetNFTs = (address: string) => {
       },
     ],
   };
-  const { isLoading, error, data } = useQuery({
+  const { isLoading, error, data, isFetching } = useQuery({
     queryKey: ['nfts', address],
     queryFn: () =>
       fetch(apiUrl(Endpoints.Collectibles), {
@@ -23,7 +23,7 @@ const useGetNFTs = (address: string) => {
       }).then((res) => res.json()),
   });
 
-  return { isLoading, error, data: data as GetNFTsOutput };
+  return { isLoading: isLoading || isFetching, error, data: data as GetNFTsOutput };
 };
 
 export default useGetNFTs;

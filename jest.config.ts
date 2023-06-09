@@ -6,9 +6,9 @@ const config: Config.InitialOptions = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
   rootDir: '.',
-  testMatch: ['**/__tests__/**/*.test.tsx'],
+  testMatch: ['**/__tests__/**/*.test.{ts,tsx}'],
   transform: {
-    '\\.(tj)sx$': 'babel-jest',
+    '\\.(tj)s(x)$': 'babel-jest',
   },
   setupFilesAfterEnv: ['./src/__tests__/setup.ts'], 
 
