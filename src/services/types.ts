@@ -129,3 +129,20 @@ export type BalanceChange = {
       // "tokenType": "NonFungible"
   }
 }
+
+export type Token = {
+  mintAddress: string;
+  tokenAccountAddress: string;
+  amount: string;
+  type: "fungible" | 'collectible',
+  name?: string;
+  symbol?: string;
+  imageUrl?: string;
+}
+
+export type PriceDataOutput = {
+  [key: string]: {
+    usd?: number;
+    usd_24h_change?: number;
+  };
+}
