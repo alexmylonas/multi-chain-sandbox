@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import type { NFT } from 'services/types';
 import React from 'react';
-import FadeIn from 'components/FadeIn';
+import { FadeIn } from 'components';
 import { NO_IMAGE_URL } from '../../../../constants';
 
 const Collectible = styled.div<{ imageUrl: string }>`
