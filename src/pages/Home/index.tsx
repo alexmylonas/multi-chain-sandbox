@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DARK_GRAY, GRAY, PURPLE, WHITE } from '../../constants';
+import { DARK_GRAY, GRAY, PURPLE, REACT_GRAY, WHITE } from '../../constants';
 import { SupportedChainIcons, SupportedChainNames, SupportedEVMChainIds } from '../../types';
 import { hexToRGB } from '../../utils';
 import Button from '../../components/Button';
@@ -14,6 +14,25 @@ const Body = styled.div`
   padding: 20px;
   button {
     margin-bottom: 15px;
+  }
+  overflow-y: scroll;
+  height: 100vh;
+
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${REACT_GRAY};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
   }
 `;
 
@@ -221,14 +240,14 @@ const Home = React.memo((props: ConnectionProps) => {
               </Button>
             ))}
         </>
+        <Tag>
+          Made with{' '}
+          <span role="img" aria-label="Red Heart Emoji">
+            ❤️
+          </span>{' '}
+          by the <a href="https://phantom.app">Phantom</a> team
+        </Tag>
       </Body>
-      <Tag>
-        Made with{' '}
-        <span role="img" aria-label="Red Heart Emoji">
-          ❤️
-        </span>{' '}
-        by the <a href="https://phantom.app">Phantom</a> team
-      </Tag>
     </FadeIn>
   );
 });

@@ -41,7 +41,7 @@ const StyledMain = styled.main`
 const NoProvider = () => {
   return (
     <StyledMain>
-      <ImageWithFallback src="https://phantom.app/img/phantom-logo.svg" alt="gif" height="400px" />
+      <ImageWithFallback src="https://phantom.app/img/phantom-logo.svg" alt="gif" height="200px" />
     </StyledMain>
   );
 };
