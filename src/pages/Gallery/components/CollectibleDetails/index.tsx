@@ -5,13 +5,37 @@ import { utils } from 'ethers';
 import { GRAY, LIGHT_GRAY, NO_IMAGE_URL, REACT_GRAY } from '../../../../constants';
 import FadeIn from 'components/FadeIn';
 import SendCollectible from '../SendCollectible';
+import { ImageWithFallback } from 'components';
 
 const NFTDetails = styled.div`
   display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: ${REACT_GRAY};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 1rem;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+  }
+`;
+
+const Wrapper = styled.div`
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 300px;
   padding: 1rem;
+  max-width: 350px;
   gap: 1rem;
 `;
 
@@ -60,38 +84,40 @@ const CollectibleDetails = ({ nft, onBack }: { nft: NFT; onBack: () => void }) =
   const hasPrice = Boolean(nft.collection.floorPrice?.price);
 
   return (
-    <FadeIn>
-      <NFTDetails>
-        <BackButton onClick={onBack}> &#8592; Back </BackButton>
-        <Title>{name}</Title>
-        <img src={imageUrl} alt={name} />
-        {/* Only allow transfer for ERC721 collectibles */}
-        {chainData?.standard === 'ERC721' ? (
-          <SendCollectible tokenId={chainData.id} contractAddress={chainData.contract} />
-        ) : null}
-        <CollectionCard>
-          <Label>Description</Label>
-          <p>{collection.description}</p>
-          <Divider />
-          <Label>Collection</Label>
-          <p>{collection.name}</p>
-          {hasPrice && (
-            <>
-              <Divider />
-              <Label>Floor Price</Label>
-              <p>{utils.formatEther(BigInt(collection.floorPrice?.price))} ETH</p>
-            </>
-          )}
-          {chainData?.contract && (
-            <>
-              <Divider />
-              <Label>Contract</Label>
-              <p>{chainData.contract}</p>
-            </>
-          )}
-        </CollectionCard>
-      </NFTDetails>
-    </FadeIn>
+    <NFTDetails>
+      <FadeIn>
+        <Wrapper>
+          <BackButton onClick={onBack}> &#8592; Back </BackButton>
+          <Title>{name}</Title>
+          <ImageWithFallback height="auto" src={imageUrl} alt={name} />
+          {/* Only allow transfer for ERC721 collectibles */}
+          {chainData?.standard === 'ERC721' ? (
+            <SendCollectible tokenId={chainData.id} contractAddress={chainData.contract} />
+          ) : null}
+          <CollectionCard>
+            <Label>Description</Label>
+            <p>{collection.description}</p>
+            <Divider />
+            <Label>Collection</Label>
+            <p>{collection.name}</p>
+            {hasPrice && (
+              <>
+                <Divider />
+                <Label>Floor Price</Label>
+                <p>{utils.formatEther(BigInt(collection.floorPrice?.price))} ETH</p>
+              </>
+            )}
+            {chainData?.contract && (
+              <>
+                <Divider />
+                <Label>Contract</Label>
+                <p>{chainData.contract}</p>
+              </>
+            )}
+          </CollectionCard>
+        </Wrapper>
+      </FadeIn>
+    </NFTDetails>
   );
 };
 
